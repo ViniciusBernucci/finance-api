@@ -13,7 +13,33 @@ datasource db {
 }
 
 model Category {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
+  id           Int           @id @default(autoincrement())
+  name         String
+  createdAt    DateTime      @default(now())
+  transactions Transaction[]
+  targets      Target[]
+}
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  description String
+  amount      Float
+  type        String
+  date        DateTime @default(now())
+
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
+
+model Target {
+  id          Int      @id @default(autoincrement())
+  description String
+  month       String
+  year        String
+  amount      Float
+  type        String
+  date        DateTime @default(now())
+
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
 }
