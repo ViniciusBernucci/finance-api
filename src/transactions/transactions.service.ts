@@ -3,15 +3,6 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 
-export interface Transaction {
-  id: number;
-  description: string;
-  amount: number;
-  type: string; //Debito ou crédito
-  date: string;
-  categoryId: number;
-}
-
 @Injectable()
 export class TransactionsService {
   constructor(private readonly prisma: PrismaService) {}
